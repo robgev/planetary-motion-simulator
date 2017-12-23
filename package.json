@@ -1,0 +1,63 @@
+{
+  "name": "planetary-motion-simulator",
+  "version": "1.0.0",
+  "description": "The source code behind planetary-motion-simulator",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robgev/planetary-motion-simulator"
+  },
+  "scripts": {
+    "watch": "node scripts/watch-project.js",
+    "babel-watch": "NODE_ENV='debug' babel app --watch --out-dir frontend",
+    "webpack-watch": "NODE_ENV='debug' webpack-dev-server --progress -d --colors --watch",
+    "start": "webpack-dev-server --progress --colors",
+    "build": "webpack --progress --colors"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.13.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-webpack": "^0.8.3",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "konva": "^1.7.6",
+    "lodash": "^4.17.4",
+    "moment": "^2.18.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-konva": "^1.6.4",
+    "serve-favicon": "^2.4.4",
+    "victory": "^0.24.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-transform-async-to-generator": "^6.22.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "node-sass": "^4.5.2",
+    "sass-loader": "^6.0.3",
+    "style-loader": "^0.15.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-cli": "^1.0.0",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-2"
+    ]
+  },
+  "author": "Robert Gevorgyan <robert1999.g@gmail.com>"
+}

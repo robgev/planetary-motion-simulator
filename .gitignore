@@ -1,0 +1,12 @@
+node_modules
+bundle.js
+npm-debug.log
+style.css
+.tern-port
+.sass-cache
+*.css.map
+public/css
+firebase-debug.log
+backend/server.js
+frontend
+.DS_Store

@@ -1,0 +1,131 @@
+/*  Basic resets for modern browsers */
+@import './utils/fonts.scss';
+
+* {
+  margin:0;
+  padding:0;
+  text-decoration:none;
+  &:before, &:after {
+    box-sizing: inherit;
+  }
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
+
+li { padding-left:1em; }
+
+.inputs-container {
+  .input-wrapper {
+    display: inline-flex;
+    flex-direction: column;
+    width: 32%;
+		padding-bottom: 18px;
+    input {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+      border: 3px solid #767676;
+      padding: 30px;
+      font-family: klavika;
+      font-size: 21px;
+      text-transform: uppercase;
+      outline: none;
+    }
+		select {
+			display: flex;
+      width: 100%;
+			height: 90px;
+      box-sizing: border-box;
+      border: 3px solid #767676;
+      font-family: klavika;
+      font-size: 21px;
+      text-transform: uppercase;
+      outline: none;
+			border-radius: 0px;
+		}
+    p {
+      color: red;
+      visibility: hidden;
+      margin: 5px 0;
+    }
+    .show {
+      visibility: visible;
+    }
+  }
+}
+
+.block-button.text-bordered {
+  border: 2px solid #fff;
+}
+
+.block-button {
+  position: relative;
+  display: inline-block;
+  height: 80px;
+  box-sizing: border-box;
+	outline: none;
+	cursor: pointer;
+  .bg {
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    display: block;
+    background-color: #1a1a1a;
+    visibility: hidden;
+    transition: all 50ms ease-in-out;
+    opacity: .5;
+  }
+  .text {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    display: table-cell;
+    height: 80px;
+    vertical-align: middle;
+    padding: 0 32px 2px;
+    font: 400 18px/.8 klavika, Arial, sans-serif;
+    color: #666 !important;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+  &:hover {
+    z-index: 1;
+    .bg {
+      display: block;
+      visibility: visible;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      opacity: 1;
+      transition: all 70ms ease-in-out;
+    }
+  }
+}
+
+.proceed-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.body-wrapper {
+	display: flex;
+  .simulation-container {
+    padding: 1em;
+  }
+}

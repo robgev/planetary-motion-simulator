@@ -1,0 +1,52 @@
+$icomoon: icomoon;
+$klavika: klavika;
+$klavika-light: klavika-light;
+$klavika-medium: klavika-medium;
+$klavika-bold: klavika-bold;
+$droid: droid;
+$droid-italic: droid-italic;
+$klavika-italic: klavika-italic;
+$droid-bold: droid-bold;
+
+@font-face {
+  font-family: $icomoon;
+  src: url(./font/icomoon/icomoon.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: $klavika;
+  src: url(./font/klavika/klavikach-regularcond-webfont.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: $klavika-light;
+  src: url(./font/klavika/klavikach-lightcond-webfont.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: $klavika-medium;
+  src: url(./font/klavika/klavikach-mediumcond-webfont.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: $klavika-bold;
+  src: url(./font/klavika/klavikach-boldcond-webfont.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: $droid;
+  src: url(./font/droid/droidserif-regular-webfont.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: $droid-italic;
+  src: url(./font/droid/droidserif-italic-webfont.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
