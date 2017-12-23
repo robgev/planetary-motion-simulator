@@ -11,12 +11,12 @@ class Simulation extends PureComponent {
 		} = props.data;
 		this.state = {
 			dt,
-			m,
-			x: x0,
-			y: y0,
-			u: u0,
-			v: v0,
 			t: 0,
+			m: m.slice().map(i => i * 1e34),
+			x: x0.slice().map(i => i * 1e11),
+			y: y0.slice().map(i => i * 1e11),
+			u: u0.slice().map(i => i * 1e6),
+			v: v0.slice().map(i => i * 1e6),
 		};
 		this.colors = x0.map(this.generateRandomColor);
 	}
@@ -123,6 +123,7 @@ render() {
 	const {
 		m, x, y, t,
 	} = this.state;
+	console.log(x);
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 	// 20px = 120m
@@ -142,10 +143,10 @@ render() {
 				/>
 				{ m.map((planetMass, id) => (
 					<Circle
-						x={x[id] * metersToPixels}
-						y={y[id] * metersToPixels}
+						x={(x[id] / 1e11) * metersToPixels}
+						y={(y[id] / 1e11) * metersToPixels}
 						fill={this.colors[id]}
-						radius={10}
+						radius={30}
 						key={`${planetMass}-${id}`}
 					/>
 				))}
