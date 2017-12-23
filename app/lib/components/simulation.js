@@ -23,7 +23,7 @@ class Simulation extends PureComponent {
 
 	componentDidMount() {
 		const { dt } = this.state;
-		this.request = setInterval(this.tick, dt * 100);
+		this.request = setInterval(this.tick, dt * 1000);
 	}
 
 	componentWillUnmount() {
@@ -123,18 +123,18 @@ render() {
 	const {
 		m, x, y, t,
 	} = this.state;
-	console.log(x);
 	const width = window.innerWidth;
-	const height = window.innerHeight - 400;
-	// width = 120m
+	const height = window.innerHeight;
+	// 20px = 120m
 	// ? = 100m
+	const metersToPixels = width / 120;
 	return (
 		<Stage
 			width={width}
 			height={height}
 			className="simulation-container"
 		>
-			<Layer>
+			<Layer offsetX={-width / 2} offsetY={-height / 2}>
 				<Text
 					x={width / 2}
 					align="center"
@@ -142,10 +142,10 @@ render() {
 				/>
 				{ m.map((planetMass, id) => (
 					<Circle
-						x={x[id] + 200}
-						y={y[id] + 200}
+						x={x[id] * metersToPixels}
+						y={y[id] * metersToPixels}
 						fill={this.colors[id]}
-						radius={planetMass * 10}
+						radius={10}
 						key={`${planetMass}-${id}`}
 					/>
 				))}
