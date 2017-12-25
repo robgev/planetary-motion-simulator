@@ -79,7 +79,7 @@ class App extends PureComponent {
 					/>
 					<InputBox
 						name="TimeStep"
-						defaultValue={100}
+						defaultValue={0.1}
 						onChange={this.setTimeStep}
 					/>
 					{ inputs.map(inputData => (

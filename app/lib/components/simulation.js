@@ -12,18 +12,18 @@ class Simulation extends PureComponent {
 		this.state = {
 			dt,
 			t: 0,
-			m: m.slice().map(i => i * 1e34),
-			x: x0.slice().map(i => i * 1e11),
-			y: y0.slice().map(i => i * 1e11),
-			u: u0.slice().map(i => i * 1e6),
-			v: v0.slice().map(i => i * 1e6),
+			m: m.map(i => i * 1e34),
+			x: x0.map(i => (i + 1) * 1e11),
+			y: y0.map(i => (i + 3) * 1e11),
+			u: u0.map(i => i * 1e6),
+			v: v0.map(i => i * 1e6),
 		};
 		this.colors = x0.map(this.generateRandomColor);
 	}
 
 	componentDidMount() {
 		const { dt } = this.state;
-		this.request = setInterval(this.tick, dt * 1000);
+		this.request = setInterval(this.tick, 2 * 1000);
 	}
 
 	componentWillUnmount() {
@@ -78,10 +78,10 @@ rungeKutta = (starId) => {
 	const dvx3 = ax + (dvx2 * (dt / 2));
 	const dvy3 = ay + (dvy2 * (dt / 2));
 
-	const dx4 = u[starId] + (dx3 * (dt));
-	const dy4 = v[starId] + (dy3 * (dt));
-	const dvx4 = ax + (dvx3 * (dt));
-	const dvy4 = ay + (dvy3 * (dt));
+	const dx4 = u[starId] + (dx3 * dt);
+	const dy4 = v[starId] + (dy3 * dt);
+	const dvx4 = ax + (dvx3 * dt);
+	const dvy4 = ay + (dvy3 * dt);
 
 	const newX = x[starId] + ((dt / 6) * (dx1 + (2 * dx2) + (2 * dx3) + dx4));
 	const newY = y[starId] + ((dt / 6) * (dy1 + (2 * dy2) + (2 * dy3) + dy4));
@@ -94,22 +94,25 @@ rungeKutta = (starId) => {
 }
 
 tick = () => {
-	const {
-		x, y, u, v, dt, t,
-	} = this.state;
-	const newState = {
-		x, y, u, v,
-	};
-	x.forEach((_, idx) => {
+	this.state.x.forEach((_, idx) => {
+		const {
+			x, y, u, v, dt, t,
+		} = this.state;
 		const {
 			newX, newY, newU, newV,
 		} = this.rungeKutta(idx);
-		newState.x[idx] = newX;
-		newState.y[idx] = newY;
-		newState.u[idx] = newU;
-		newState.v[idx] = newV;
+		const newXVec = x.slice();
+		newXVec[idx] = newX;
+		const newYVec = y.slice();
+		newYVec[idx] = newY;
+		const newUVec = u.slice();
+		newUVec[idx] = newU;
+		const newVVec = v.slice();
+		newVVec[idx] = newV;
+		this.setState({
+			x: newXVec, y: newYVec, u: newUVec, v: newVVec, t: t + dt,
+		});
 	});
-	this.setState({ ...newState, t: t + dt });
 }
 
 generateRandomColor = () => {
@@ -123,12 +126,12 @@ render() {
 	const {
 		m, x, y, t,
 	} = this.state;
-	console.log(x);
+	console.log(x.map(i => (i / 1e11) * 50));
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 	// 20px = 120m
 	// ? = 100m
-	const metersToPixels = width / 120;
+	const metersToPixels = 50;
 	return (
 		<Stage
 			width={width}
@@ -143,11 +146,11 @@ render() {
 				/>
 				{ m.map((planetMass, id) => (
 					<Circle
+						fill={this.colors[id]}
+						radius={(10 * m[id]) / 1e34}
+						key={`${planetMass}-${id}`}
 						x={(x[id] / 1e11) * metersToPixels}
 						y={(y[id] / 1e11) * metersToPixels}
-						fill={this.colors[id]}
-						radius={30}
-						key={`${planetMass}-${id}`}
 					/>
 				))}
 			</Layer>
