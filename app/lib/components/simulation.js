@@ -13,8 +13,8 @@ class Simulation extends PureComponent {
 			dt,
 			t: 0,
 			m: m.map(i => i * 1e34),
-			x: x0.map(i => (i + 1) * 1e11),
-			y: y0.map(i => (i + 3) * 1e11),
+			x: x0.map(i => i * 1e11),
+			y: y0.map(i => i * 1e11),
 			u: u0.map(i => i * 1e6),
 			v: v0.map(i => i * 1e6),
 		};
@@ -23,7 +23,7 @@ class Simulation extends PureComponent {
 
 	componentDidMount() {
 		const { dt } = this.state;
-		this.request = setInterval(this.tick, 2 * 1000);
+		this.request = setInterval(this.tick, dt);
 	}
 
 	componentWillUnmount() {
@@ -101,14 +101,10 @@ tick = () => {
 		const {
 			newX, newY, newU, newV,
 		} = this.rungeKutta(idx);
-		const newXVec = x.slice();
-		newXVec[idx] = newX;
-		const newYVec = y.slice();
-		newYVec[idx] = newY;
-		const newUVec = u.slice();
-		newUVec[idx] = newU;
-		const newVVec = v.slice();
-		newVVec[idx] = newV;
+		const newXVec = x.map((cx, i) => (i === idx ? newX : cx));
+		const newYVec = y.map((cy, i) => (i === idx ? newY : cy));
+		const newUVec = u.map((cu, i) => (i === idx ? newU : cu));
+		const newVVec = v.map((cv, i) => (i === idx ? newV : cv));
 		this.setState({
 			x: newXVec, y: newYVec, u: newUVec, v: newVVec, t: t + dt,
 		});
@@ -126,7 +122,7 @@ render() {
 	const {
 		m, x, y, t,
 	} = this.state;
-	console.log(x.map(i => (i / 1e11) * 50));
+	console.log(this.state);
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 	// 20px = 120m

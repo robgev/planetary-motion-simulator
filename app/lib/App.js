@@ -13,7 +13,7 @@ class App extends PureComponent {
 		super();
 		this.state = {
 			N: 4,
-			dt: 0.1,
+			dt: 4.5,
 			index: -1,
 			m: [ 2, 1, 1, 2 ],
 			x0: [ -2, -1, 1, 2 ],
@@ -79,7 +79,7 @@ class App extends PureComponent {
 					/>
 					<InputBox
 						name="TimeStep"
-						defaultValue={0.1}
+						defaultValue={4.5}
 						onChange={this.setTimeStep}
 					/>
 					{ inputs.map(inputData => (
